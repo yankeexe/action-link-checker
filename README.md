@@ -25,7 +25,7 @@ jobs:
     steps:
       - uses: actions/checkout@v4
       - name: Check links in README
-        uses: yankeexe/action-link-checker@v1
+        uses: yankeexe/action-link-checker@main
         with:
           file_path: 'README.md'
 ```
@@ -42,7 +42,7 @@ jobs:
     steps:
       - uses: actions/checkout@v4
       - name: Check links with custom settings
-        uses: yankeexe/action-link-checker@v1
+        uses: yankeexe/action-link-checker@main
         with:
           file_path: 'docs/README.md'
           concurrent_workers: '20'
@@ -64,7 +64,7 @@ jobs:
     steps:
       - uses: actions/checkout@v4
       - name: Check links in ${{ matrix.file }}
-        uses: yankeexe/action-link-checker@v1
+        uses: yankeexe/action-link-checker@main
         with:
           file_path: ${{ matrix.file }}
 ```
@@ -117,7 +117,7 @@ Check out https://github.com/user/repo
 ### Optimize for Large Files
 ```yaml
 - name: Check links with higher concurrency
-  uses: yankeexe/action-link-checker@v1
+  uses: yankeexe/action-link-checker@main
   with:
     file_path: 'large-document.md'
     concurrent_workers: '50'
@@ -127,7 +127,7 @@ Check out https://github.com/user/repo
 ### Handle Slow Links
 ```yaml
 - name: Check links with extended timeout
-  uses: yankeexe/action-link-checker@v1
+  uses: yankeexe/action-link-checker@main
   with:
     file_path: 'README.md'
     timeout_seconds: '30'
