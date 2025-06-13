@@ -11,7 +11,7 @@ import (
 )
 
 func ExtractURLs(fileContent string) ([]string, error) {
-	urlPattern := `(https?://[^\s\)]+)|(?:\[.*?\]\((.*?)\))`
+	urlPattern := `(https?://[^\s\)"'<>]+)|\[.*?\]\((.*?)\)`
 	re, err := regexp.Compile(urlPattern)
 	if err != nil {
 		return nil, fmt.Errorf("failed to compile regex: %w", err)
@@ -21,10 +21,10 @@ func ExtractURLs(fileContent string) ([]string, error) {
 	matches := re.FindAllStringSubmatch(fileContent, -1)
 
 	for _, match := range matches {
-		if match[1] != "" {
+		if match[1] != "" && hasHTTPPrefix(match[1]) {
 			urls = append(urls, match[1])
 		}
-		if match[2] != "" {
+		if match[2] != "" && hasHTTPPrefix(match[2]) {
 			urls = append(urls, match[2])
 		}
 	}
@@ -37,6 +37,10 @@ func ExtractURLs(fileContent string) ([]string, error) {
 		}
 	}
 	return uniqueURLs, nil
+}
+
+func hasHTTPPrefix(s string) bool {
+	return len(s) > 7 && (s[:7] == "http://" || (len(s) > 8 && s[:8] == "https://"))
 }
 
 func CheckURL(client *http.Client, jobs <-chan string, wg *sync.WaitGroup, successResults chan<- string, failureResults chan<- string) {
