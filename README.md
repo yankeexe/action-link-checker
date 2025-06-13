@@ -45,7 +45,7 @@ jobs:
         uses: yankeexe/action-link-checker@main
         with:
           file_path: 'docs/README.md'
-          concurrent_workers: '20'
+          concurrent_workers: '50'
           timeout_seconds: '10'
 ```
 
@@ -74,7 +74,7 @@ jobs:
 | Input | Description | Required | Default |
 |-------|-------------|----------|---------|
 | `file_path` | Path to the file to parse for links | ✅ Yes | - |
-| `concurrent_workers` | Number of concurrent workers for checking links | ❌ No | `10` |
+| `concurrent_workers` | Number of concurrent workers for checking links | ❌ No | `30` |
 | `timeout_seconds` | Timeout in seconds for each link check | ❌ No | `5` |
 
 ## 📤 Outputs
