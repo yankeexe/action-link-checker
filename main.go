@@ -59,7 +59,7 @@ func main() {
 	filePath := os.Getenv("INPUT_FILE_PATH")
 	workerStr := os.Getenv("INPUT_CONCURRENT_WORKERS")
 	timeoutSeconds := os.Getenv("INPUT_TIMEOUT_SECONDS")
-	maxConcurrentWorkers := 10
+	maxConcurrentWorkers := 30
 	defaultTimeoutSeconds := 5
 
 	if filePath == "" {
@@ -72,8 +72,8 @@ func main() {
 		maxConcurrentWorkers, err = strconv.Atoi(workerStr)
 		if err != nil || maxConcurrentWorkers < 1 {
 			fmt.Printf("⚠️ Invalid concurrent_workers: %s\n", workerStr)
-			fmt.Println("ℹ️ Using default value of 10 for concurrent workers.")
-			maxConcurrentWorkers = 10
+			fmt.Println("ℹ️ Using default value of 30 for concurrent workers.")
+			maxConcurrentWorkers = 30
 		}
 	}
 	if timeoutSeconds != "" {
