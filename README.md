@@ -158,11 +158,35 @@ Ensure all API endpoint links and external references are working.
 - Reduce `concurrent_workers` if you encounter rate limiting
 - Some APIs may have strict rate limits for automated tools
 
-## Contributing
+## 🛠️ How It Works
+
+1. The action reads the specified file and extracts URLs using regex pattern matching
+2. It identifies both markdown-style links `[text](url)` and bare URLs
+3. For each unique URL, it first attempts a HEAD request (faster, less bandwidth)
+4. If the HEAD request fails, it falls back to a GET request
+5. Results are collected and reported, with the action failing if any broken links are found
+
+## 📈 Limitations
+
+- The action currently only checks a single file at a time (use matrix strategy for multiple files)
+- Some websites block automated requests, which may result in false negatives
+
+
+## 🤝 Contributing
 
 Contributions are welcome! Please feel free to submit a Pull Request.
 
+1. Fork the repository
+2. Create your feature branch (`git checkout -b feature/amazing-feature`)
+3. Commit your changes (`git commit -m 'Add some amazing feature'`)
+4. Push to the branch (`git push origin feature/amazing-feature`)
+5. Open a Pull Request
+
 For major changes, please open an issue first to discuss what you would like to change.
+
+## 📄 License
+
+This project is licensed under the MIT License - see the LICENSE file for details.
 
 ---
 
